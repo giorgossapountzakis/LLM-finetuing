@@ -1,0 +1,1278 @@
+
+A few decades ago, drug discovery and development were limited to a bunch of medicinal chemists working in a lab with 
+enormous amount of testing, validations, and synthetic procedures, all contributing to considerable investments in time and 
+wealth to get one drug out into the clinics. The advancements in computational techniques combined with a boom in multi-
+omics data led to the development of various bioinformatics/pharmacoinformatics/cheminformatics tools that have helped 
+speed up the drug development process. But with the advent of artificial intelligence (AI), machine learning (ML) and deep 
+learning (DL), the conventional drug discovery process has been further rationalized. Extensive biological data in the form 
+of big data present in various databases across the globe acts as the raw materials for the ML/DL-based approaches and helps 
+in accurate identifications of patterns and models which can be used to identify therapeutically active molecules with much 
+fewer investments on time, workforce and wealth. In this review, we have begun by introducing the general concepts in the 
+drug discovery pipeline, followed by an outline of the fields in the drug discovery process where ML/DL can be utilized. 
+We have also introduced ML and DL along with their applications, various learning methods, and training models used to 
+develop the ML/DL-based algorithms. Furthermore, we have summarized various DL-based tools existing in the public 
+domain with their application in the drug discovery paradigm which includes DL tools for identification of drug targets and 
+drug–target interaction such as DeepCPI, DeepDTA, WideDTA, PADME DeepAffinity, and DeepPocket. Additionally, we 
+have discussed various DL-based models used in protein structure prediction, de novo design of new chemical scaffolds, 
+virtual screening of chemical libraries for hit identification, absorption, distribution, metabolism, excretion, and toxicity 
+(ADMET) prediction, metabolite prediction, clinical trial design, and oral bioavailability prediction. In the end, we have 
+tried to shed light on some of the successful ML/DL-based models used in the drug discovery and development pipeline 
+while also discussing the current challenges and prospects of the application of DL tools in drug discovery and development. 
+We believe that this review will be useful for medicinal and computational chemists searching for DL tools for use in their 
+drug discovery projects.
+
+
+Introduction
+The term artificial intelligence (AI), commonly referred to 
+as the intelligence demonstrated by machines, is used to 
+indicate instances in which a system/machine show cog-
+nitive abilities like humans, such as learning and problem 
+solving, have been considered to be a game-changer across 
+all industries, both academic and commercial . The World Economic Forum stated that the 
+amalgamation of big data and AI would kick start the fourth 
+industrial revolution that can radically alter the practice of 
+scientific discovery . Like any other sector, 
+the pharmaceutical sector is considering the unrealized 
+prospects of AI to address key problems influencing drug 
+discovery and productivity . In 
+the pharmaceutical industry, AI started gaining popularity 
+when AI-based models demonstrated biological/chemical 
+property predictions with great accuracy in a short time, 
+especially DL architectures . Moreover, 
+both advancements in hardware and the ease of availability 
+of large datasets have contributed to the tremendous growth 
+in the application of AI in pharmaceutical research .
+
+
+The majority of the problems arising during the process 
+of drug discovery include unfavorable absorption, distribu-
+tion, metabolism, excretion, and toxicity (ADMET) proper-
+ties, which have been known to be a major cause of failure 
+of the potential molecules in the drug development pipe-
+line, contributing to large consumption of time, capital and 
+human resources . This has increased the 
+interest in the early-stage prediction of ADMET proper -
+ties of drug candidates so that the success rate of a com-
+pound reaching the later stages of drug development can 
+be enhanced . AI has been effectively 
+utilized to develop models and prediction tools for ADMET 
+properties. Apart from property predictions, AI has also 
+contributed to early phases of drug discovery like de novo 
+designing of chemical compounds and peptides . Moreover, companies involved in 
+clinical research have ascertained that revising the research 
+strategies by introducing AI-based techniques has resulted 
+in greater success rates in both preclinical and clinical trials 
+. 
+Worth mentioning is the contribution of AI to precision 
+medicine, which has been helping researchers maximize 
+patients’ benefit and lower the side effects caused due to 
+the prevalent traditional “one size fits all” approaches. The 
+new revolutionizing AI methodologies have been helping in 
+characterizing different subgroups of diseases, patient strati-
+fication, and studying the underlying factor unique to the 
+specific form of the disease .
+
+
+This review mainly focusses on the DL-based tools which 
+are used in different stages of the drug discovery pipeline. 
+We have given a general introduction to drug discovery pro-
+cess, Machine learning and DL techniques, followed by spe-
+cific examples and discussion on various DL and AI-based 
+tools for drug development. We also pointed out some nota-
+ble success stories in the use of AI and DL in drug develop-
+ment and medicine.
+
+
+Introduction to drug discovery and development
+Drug discovery and development is a complex process that 
+aims to identify and develop novel therapeutics against 
+validated biological target intrinsically associated with a 
+particular disease of interest . An 
+overview of drug discovery and development is shown in 
+Fig. 1. It encompasses the whole process of bringing a drug 
+molecule into the market, initially starting with hit identi-
+fication and ending with clinical trials phases after being 
+approved by regulating bodies such as the Food and Drug 
+Administration FDA . Traditionally, the 
+drug discovery process starts with identification of bimo-
+lecular targets in the body which have been validated to 
+play a vital role in the disease pathology. This is followed 
+by high-throughput screening experiments in which large 
+chemical libraries are screened against the selected target 
+using appropriate assay . The main objective of this high-throughput screening is to find prom-
+ising compounds which have the potential to be developed 
+into a drug candidate to treat the disease under consideration 
+. After high-throughput screening, the 
+chosen compounds, often referred to as hit compounds, are 
+analyzed for their biological activity via in vitro studies. 
+The most potent compounds obtained from in vitro activ -
+ity data are developed into lead compounds through lead 
+optimization process. During the lead optimization phase, 
+the compounds are modified to improve its bioavailability, 
+solubility, partition coefficient, and stability as these factors 
+can have direct impact of the drug therapeutic efficacy and 
+potency. The molecules with optimized ADMET properties 
+are then further evaluated for their effectiveness using suit-
+able animal models . The optimized 
+compounds are tested in human subjects in order to validate 
+and confirm the potency, therapeutic efficacy, ADMET and 
+possible adverse drug reactions through a four step process 
+called clinical trials, in which each step is carried out in 
+varying number of human subjects in a randomized control 
+manner . If the drug candidate yields desired 
+results in the clinical trial phase, then it is approved by the 
+regulating bodies like FDA, after which the drug is released 
+into the market .
+
+
+Introduction to machine learning and deep learning
+ML is a method of data analysis involving development of 
+new algorithms and models capable of interpreting multi-
+tude of data . While 
+considering ML, one must not confuse it with AI, as accord-
+ing to the FDA “all ML techniques are AI techniques, but not 
+all AI techniques are ML techniques”. Furthermore, FDA 
+also defines AI as “the science and engineering of making 
+intelligent machines”, and ML as “an AI technique that can 
+be used to design and train software algorithms to learn from 
+and act on data” .
+
+
+The algorithms used in recent years have successively 
+improved their performance with the increase in both the 
+quantitative and qualitative aspects of data available for 
+learning . ML is 
+considered as one of the best options available when applied 
+to solve problems for which a big amount of data and vari-
+ous variables are available to the individual but a model or 
+formula relating these various variables amongst themselves 
+along with the expected result is not known . However, 
+when drug discovery moved into an era of a large amount 
+of data, ML approaches evolved into DL approaches, which 
+are a more powerful and efficient to deal with the massive 
+amounts of data generated from modern drug discovery 
+approaches . ML allows a computer system to make some 
+predictions or decisions, based on its past experience, with-
+out being explicitly programmed. In contrast to the tradi-
+tional physical models that rely on particular physical equa-
+tions, the ML technique uses several algorithms to create a 
+pattern, leading to the prediction of chemical, biological, and 
+physical properties of the novel compounds. This is mainly 
+done using two learning techniques, supervised learning 
+and unsupervised learning techniques. Supervised ML is 
+the construction of an algorithm capable of generating pat-
+terns and hypotheses to predict the fate of future instances, 
+depending on the data provided . In 
+brief, supervised learning technique uses the input data to 
+train the algorithm and create a decision boundary to clas-
+sify or predict the outcomes in any similar circumstances. 
+The supervised ML algorithms can be further classified into 
+classification algorithm and regression algorithm .
+
+
+The classification algorithm aims at categorizing the data 
+based on the training dataset. One of the common appli-
+cations of classification algorithm in bioinformatics is the 
+identification of gene coding regions in a Genome. These 
+tools are considered to be significantly flawless as several 
+classification algorithms are used to train from a given set 
+of datasets and are further used to classify the gene coding 
+regions in a genome . The regres-
+sion algorithm aims at predicting the fate of future instances 
+depending on the data in the training dataset. It uses vari-
+ous techniques such as rule-based techniques, logic-based 
+techniques, instance-based techniques, stochastic techniques, 
+etc. to make accurate predictions. Recently, the regression 
+algorithms are being widely used to predict the novel targets 
+or structures such as the protein–protein interaction sites. A 
+detailed study about regression algorithms have witnessed 
+some promising results with an accuracy of above 80% to 
+identify the structures in proteomics .
+
+
+One of the biggest advantages of the supervised learning 
+algorithms is that it can be trained specifically by setting 
+an ideal decision boundary, the user gets the authority to 
+determine the number of classes, and the input data are well-
+labeled which makes the output of the test algorithm to be 
+more accurate and reliable. While on the other hand, some of 
+the disadvantages of supervised learning techniques include 
+the classification of huge datasets, which can be sometimes 
+be challenging and time consuming, overtraining of decision 
+boundaries due to the unavailability of appropriate exam-
+ples, which can make the output of the test algorithm to be 
+inaccurate. Moreover, data preparation and pre-processing 
+of the input data can also be a challenging task .
+
+
+The unsupervised ML aims at interpretation and learning 
+an abstract representation of the given data in the absence of 
+any predefined labels, or phenotypes. Unsupervised learning 
+works by clustering data points into patterns to obtain mean-
+ingful biological information. Unsupervised learning can 
+be broadly classified into clustering, which relies on the 
+principle of the grouping of unlabeled data based on their 
+similarities and association, which involves discovering 
+some relationships between the attributes of unlabeled data 
+points. Some of the commonly used clustering algorithms 
+include hierarchical or k-means clustering . The clustering technique splits the unlabeled dataset 
+into groups based on their similarities. For a huge amount 
+of data, k-means clustering is commonly used to form clus-
+ters of small molecule profiles, on the basis of their profile 
+similarity . The k-means clustering and 
+the corresponding heat maps are comparatively simple and 
+require little computational resources. The hierarchical clus-
+tering is often used in gene expression profiling or genetic 
+interaction studies which provides a broad visualization of 
+the data, hence helping in better analysis .
+
+
+One of the major advantages of unsupervised learn-
+ing techniques over supervised learning algorithms is that 
+it is less complex as compared to supervised learning as 
+training of the dataset is not required and sorting of raw 
+data and understanding the different models of learning 
+makes it useful in real time. Also, it is much easier to get 
+unlabeled data from a computer automatically rather than 
+labeled data which needs human involvement . Some of the major disadvantages of unsu-
+pervised learning techniques includes data sorting which 
+may not be precise as the data used is not labeled which 
+may lead to less accurate and unpredictable results. Due 
+to the absence of any prior knowledge or training set of 
+data, the spectral classes do not always correspond to the 
+informational classes, hence spectral properties of classes 
+may change with time which makes the class information 
+to vary while moving from one image to another . All these learning techniques mentioned above have 
+contributed a lot in making the slow, tedious and expen-
+sive process of drug discovery to be efficient, fast and cost 
+effective.
+
+
+DL is a subset of ML based on artificial neural networks 
+that use multiple layers to progressively extract higher 
+level features from raw input. Due to its ability to learn 
+from data and the environment, DL and neural network 
+(NN), also known as artificial neural networks (ANN) 
+named after its artificial representation of the working of 
+a human nervous system, have become one of the most 
+successful techniques in various AI research areas . It has shown superior perfor -
+mance over other ML methods and has recently emerged 
+as one of the most promising tools in the field of phar -
+maceutical research where its application is not only lim-
+ited to the bioactivity predictions but has far exceeded in 
+addressing numerous problems in the field of drug design 
+and discovery . Table  1 enlists some of 
+the extensively used tools in the field of DL .
+
+
+Figure 2 represents a typical NN with the working of a 
+single neuron. Artificial neural network is a structure which 
+has got several input vectors I  = [i1, i2, i3, …, in] and an 
+appropriate output vector O = [o1, o2, o3,…, om] along with 
+several connected elementary units, known as neurons. The 
+network initially receives information in the form of input 
+vectors and aims to process or learn from it. From here, the 
+data go through one or more hidden layers which understand 
+the hidden patterns in the data using calculations and carry 
+out transformations accordingly. The activation function or 
+the transfer function also acts upon the processed data to 
+capture the non-linear relationship between the inputs and 
+also convert it to a more usable output . The 
+performance of an ANN depends on the number of layers, 
+the number of neurons, transfer function, the presence of 
+a bias, and the way neurons are interconnected .
+
+
+Deep learning tools for drug discovery
+To realize the enormous potential of DL algorithms in drug 
+discovery and development, computer scientist and medici-
+nal chemist have found a common point to work together to 
+develop DL-based tools, predictive models and algorithms 
+which can be used in the drug discovery and development. 
+Here, we have summarized some of the DL-based tools 
+which are developed to aid the drug discovery and develop-
+ment process.
+
+
+Deep learning tools for predicting drug–target 
+interactions and binding affinity
+Drug–target interaction refers to the interactions between 
+chemical compounds and bimolecular drug targets in the 
+human body and it plays an extremely important role in 
+drug discovery and development as the therapeutic effect 
+is a result of this interaction. The very small and limited 
+knowledge about drug–target interactions based on wet-lab 
+experiments have caused a huge gap between the known and 
+unknown drug–target pairs which has increased the interest 
+in the search for efficient methods of drug–target interac-
+tions (DTI) prediction. The traditional practices for DTI 
+prediction have been facing monetary and technical limita-
+tions, while computational strategies have been proved to 
+show efficiency in doing the same. At present, the major 
+computational approaches used in DTI prediction includes 
+ligand-based approach, docking simulation, chemo-genomic 
+approach, text mining methods, ML/ DL based methods, 
+and network-based methods, a branch diagram about vari-
+ous tools and approaches is given in Fig. 3 . Some of the DL-based methods for 
+drug–target interaction are discussed below.
+
+
+The computational prediction of drug target in reaction 
+can be largely classified into DTI prediction methods and 
+drug target binding affinity (DTBA) prediction methods. 
+The DTI prediction methods contains docking simulations, 
+gene ontology-based methods, ligand-based methods, text 
+mining-based methods and ML/DL/Network-based methods. 
+DTBA-based methods are further classified into structure 
+based and non-structure based whereas structure based are 
+further classified into classical scoring function methods and 
+ML-SF/DL-SF methods and classical scoring function meth-
+ods are further classified into knowledge based, empirical SF 
+based and Force-field SF-based methods.
+
+
+DTI‑CNN
+The convolutional neural network (CNN) is a class of 
+NN, commonly used to analyze visual imagery. DTI-CNN 
+ is a sim -
+ple DL-based drug–target interaction prediction tool that 
+is said to outperform the existing state-of-the-art methods 
+by the intelligent interaction of three components namely, 
+ heterogeneous-network-based feature extractor,  denoising-auto encoder-based feature selector,  CNN-
+based interaction predictor . As the model is based on random walk with restart 
+(RWR) and denoising auto encoder (DAE) model, it is 
+capable of coping up with low-dimensional feature vec-
+tors and noisy incomplete and high-dimensional features 
+from heterogeneous data sources, including drug, pro-
+teins, side-effects and diseases information. The general 
+workflow of DTI-CNN-based DTI prediction is shown 
+in Fig.  4.
+
+
+The first step in using DTI-CNN for DTI prediction 
+includes the construction of a heterogeneous network by 
+the integration of a large number of drugs and protein 
+related information sources and using the RWR model to 
+obtain the initial drug feature vector and protein feature 
+vector. In the next step with the use of the DAE model, 
+the low-dimensional representations of the high-dimen-
+sional features of drugs and proteins are obtained. In the 
+final step, under the known drug–protein interactions, 
+the samples are divided into positive samples and nega-
+tive samples. The CNN model is then used to predict the 
+association between each pair of drugs and proteins using 
+the feature vector of drug–protein pairs . Another 
+such DL-based tool called FRnet-DTI, which is a CNN-
+based classifier for drug target interaction prediction and 
+uses an auto-encoder-based feature manipulation .
+
+
+DeepCPI
+DeepCPI is a tool based on novel framework that uses DL 
+techniques along with unsupervised representation learning 
+meant for prediction of DTI . At first, it is 
+said to use latent semantic analysis and Word2vec methods 
+to learn the low-dimensional feature representations of both 
+the compounds and proteins in an unsupervised manner. 
+Then the feature embedding of the compounds and protein 
+from the first step is fed to the DL network for successful 
+prediction of the drug–protein interaction. The development 
+of efficient DTI predicting models is still under progress due 
+to the large number of limitations it faces. For example, in 
+the case of docking simulation, the 3D structure of the target 
+protein is very much required, but is not always available. 
+Moreover, it is evident that in comparison to the DTI, the 
+strength of the binding (binding affinity) between a drug and 
+its target is much more informative for drug development 
+process which helps to gain deeper insights into the intermo-
+lecular forces operating between them .
+
+
+The newly developed DL algorithms to predict DTBA 
+have shown superior performance in comparison to conven-
+tional ML algorithms. These DL-based algorithms use sim-
+plified molecular input line entry system (SMILES) which 
+is a compact text format of representation of the molecu-
+lar structure in which each chemical entity is mapped to a 
+single ASCII strings of 20–90 characters, ligand maximum 
+common substructure (LMCS), extended connectivity fin-
+gerprint (ECFP) or a mixture of the three as an input data 
+or as drug features. They also use different neural network 
+(NN) types that have their own unique strengths which allow 
+them to be suitable for a varied range of applications .
+
+
+DeepDTA
+The first DTBA predicting DL-based approach is DeepDTA 
+ which is a non-structure-based method 
+and uses SMILES for input data for drugs. The amino acids 
+and the protein sequences are similarly encoded in SMILES. 
+The CNN used in DeepDTA has three 1D convolutional lay-
+ers which follow max-pooling functions which are referred 
+to as the first CNN block and are applied on the drug embed-
+ding to learn latent features. For the protein embedding, a 
+similar CNN block is constructed and applied to it. Deep-
+DTA is said to tune a large number of hyper-parameters 
+including number of filters, filter length of drug and protein, 
+batch size, optimizer, and learning rate in the validation step. 
+This model aims to minimize the difference in the values 
+of the predicted and real DBTA in the training period. The 
+limitations faced in this model due to the usage of CNN can 
+be overcome by using much more appropriate architectures, 
+which can learn from long protein sequences, like the long-
+short term memory .
+
+
+WideDTA
+WideDTA is a CNN DL model that uses four text-based 
+sources of information as input which include,  ligand 
+SMILES (LS),  protein sequences (PS),  ligand maxi-
+mum common substructure (LMCS),  protein domains 
+and motifs (PDM). WideDTA differs from DeepDTA as it 
+represents LS and PS as a set of words instead of full-length 
+sequences. In PS, a word is three-residues in the sequences, 
+while in LS it is an eight-residue. The makers claim that the 
+features of the protein that are represented by shorter lengths 
+of residues are not detected in full-length sequences due to 
+the low signal-to-noise ratio and hence the WideDTA is a 
+word-based model instead of a character-based one .
+
+
+PADME
+The DL-based DTBA predicting method which uses 
+drug–target features and fingerprints to different DNN, is 
+called protein and drug molecule interaction prediction 
+(PADME). When extended-connectivity fingerprint is 
+used as the input for the representation of drugs, the tool is 
+known as PADME-ECFP. The other PADME version inte-
+grates molecular graph convolution into the model to learn 
+the latent features of drugs from SMILES by adding one 
+more graph convolution neural network and is represented 
+as PADME-GraphConv. Protein sequence composition  
+descriptors are used by both versions which contain rich 
+information for representing target proteins. Once the feature 
+vectors are generated, it is fed into the simple feedforward 
+neural network for a particular drug–target pair for predict-
+ing the DTBA .
+
+
+DeepAffinity
+The DL DTBA predicting model which only relies on 
+SMILES for representing drugs is known as DeepAffin-
+ity. To represent the proteins, DeepAffinity relies on the 
+structural property sequence representation that annotates 
+the sequence with structural information, which are shorter 
+than the other representations, provides structural details 
+efficiently and gives higher resolution of the sequences, 
+also the regression task is highly benefited. Using a famous 
+RNN model, seq2seq, the representations are encoded into 
+an embedding form. At later stages of data processing, the 
+RNN encoders are coupled with a CNN model whose output 
+representations for the drug and target are concatenated and 
+to get the final DTBA output values are fed into the FC lay-
+ers. The complete model which includes data representation, 
+embedding learning, and joint supervised learning trained 
+from end to end. Basically, the RNN-CNN pipeline has been 
+found to produce high accuracy results when compared to 
+other ML-based methods used on the same dataset .
+
+
+Deep docking
+Virtual prediction of protein ligand interaction by the help of 
+docking can tremendously reduce the time required for the 
+process of new drug discovery and development , but the speed of virtual 
+screening-based DTI prediction is offered a limitation due to 
+the large chemical library with billions of compounds. Thus, 
+a much faster screening technique is required to tackle and 
+filter such huge amount of data, deep docking is a new and 
+novel method that works on the principles of DL platform 
+which is capable of docking billions of molecular structures 
+in a quick and precise manner . The 
+main objective of deep docking is to reduce the database 
+of billions of compounds into a few millions of subset of 
+data while retaining the extensive majority of the possible 
+virtual hits which can then be carried forward for the actual 
+docking studies or can be further processed or refined with 
+the combination of other methods of virtual screening to 
+further narrow down the data containing more concentrated 
+virtual hits. Deep docking relies on the deep neural network 
+(DNN) training where the training set is expanded along 
+with the predicted hit molecules form each previous steps of 
+interpretation gradually making more rigorous cutoff toward 
+the end of the calculation. It employs the use of quantitative 
+structure activity relationship (QSAR) models trained on the 
+basis of docking scores obtained for the subsets of a chemi-
+cal library to predict the docking results for yet to be docked 
+compounds and thus eliminate the molecules not showing 
+promise to yield a good docking score in a constant manner. 
+It utilizes the use of quick computing and large independent 
+QSAR descriptors such as 2D molecular fingerprints , as a result of using DL to quickly determine the 
+docking scores for a large dataset of compounds for which 
+actual docking is yet to be performed. Deep Docking can 
+attain up to 100 folds improvement in virtual screening 
+speed and about 6000 folds improvement for identification of 
+top ranked compounds thereby avoiding the loss of favorable 
+virtual hits .
+
+
+DeepBAR
+DeepBAR is a DL-based binding affinity predicting tool 
+developed by the scientists at MIT by combining chemistry 
+and ML . The binding free energy 
+measures the affinity between a drug molecule and its target. 
+To obtain the best drug amongst a given number of potential 
+ones, the drug with the lowest binding free energy value 
+should be chosen as it will be able to disrupt the protein’s 
+normal function effectively.
+
+
+Therefore, it can be said that fast and accurate calcula-
+tion of standard binding free energy has many important 
+applications in this drug discovery process. The BAR in 
+DeepBAR refers to the Bennett acceptance ratio method. 
+BAR is an outdated algorithm that is used to calculate bind-
+ing free power. DeepBAR utilizes the Bennet acceptance 
+ratio along with the information from different endpoints 
+and other intermediate circumstances.
+
+
+Protein structure prediction
+Proteins are the one of the most important biomolecules 
+which plays a wide variety of roles in an organism, like 
+enzymatic activity, receptor activity, cell signaling, hormo-
+nal activities, intracellular transport, etc. Most of the cur -
+rently identified drug targets are also protein molecules, 
+whose malfunction leads to pathological states. To study 
+the function of proteins, it is important to know the structure 
+of the proteins, as the protein structure usually determines 
+its function, activity and also pathological conditions. But 
+the process of identifying the structure is not very straight 
+forward and it requires experimental procedures like X-ray 
+crystallography, NMR spectroscopy, cryo electron micros-
+copy, etc., which are time consuming and in most cases, 
+very difficult to perform. The traditional method of experi-
+mental data threw light on the structures of around 100,000 
+unique proteins, which is just a fraction of the known pro-
+tein sequences. To address the gap of such a large number 
+
+
+of unknown protein structures, accurate computational 
+approaches are needed, which enables large-scale structural 
+bioinformatics . To make protein struc-
+ture determination, a much simpler and less tedious proce-
+dure, scientist took help of various DL techniques which can 
+predict protein structure with great degree of confidence, 
+some of which are discussed below.
+
+
+Alphafold
+AlphaFold  is a new computational method that 
+includes analysis of the covariation in the homologous 
+sequences, which are in contact and helps in the prediction 
+of protein structures. The initial step of this modern method 
+includes training a neural network to make precise predic-
+tions of the distances between residue pairs, inferring a bet-
+ter idea about the structure. This information can be used to 
+construct a potential of mean force that can precisely mark 
+out the shape of the protein. Considering the chances of 
+having sequences with fewer homologous sequences, the 
+potential of mean force can be optimized by a simple gradi-
+ent descent algorithm, named AlphaFold, which helps in 
+achieving higher accuracy without complex sampling pro-
+cedures .
+
+
+AlphaFold generally assembles the best probable frag-
+ments based on the analysis of the multiple sequence align-
+ment. It interprets the spatial proximity by detecting the 
+mutations that have occurred throughout the evolutionary 
+timeframes in response to the other mutations. For such a 
+task, it utilizes a huge amount of computational power in 
+order to manage the truly DNN that identify the evolutionary 
+patterns within the protein structure sequences with respect 
+to the contact distributions and angular restraints. Addition-
+ally, with the help of DL algorithms it can produce a protein 
+specific statistical potential using a ‘learned reference state’, 
+instead of a physical-based reference state. Thus, AlphaFold 
+has given the researchers a tool that has great potential in 
+protein structure prediction .
+
+
+CASP
+The objective of critical assessment of protein structure 
+prediction (CASP)  is to develop a technology that 
+can recognize and construct the three dimensional struc-
+ture of the protein from the protein sequences. It can be 
+achieved primarily by two ways on the basis of the pres-
+ence of any template structure previously available or not, 
+namely  template-based models and  template-free 
+models, amongst which the template-based modeling is 
+the more preferable one if a good template is available, 
+as it utilizes the available protein structure as the base for 
+prediction, thereby more matured technique among the two 
+and can be readily approached by the researchers who have 
+less experience. On the other hand, if there is no template 
+present for the protein structure one can employ template-
+free modeling to build the structure. Template-free modeling 
+has two kinds of approaches, fragment-based assembly and 
+de novo folding, where the de novo folding approach aims 
+to build the three dimensional structures from the scratch 
+using the fundamentals of physics, where the secret to its 
+success lies within the use of an accurate energy function to 
+efficiently search for the lowest energy state conformation 
+and also to discriminate native like structures from decoys. 
+Yet, the fragment-based assembly still dominates because of 
+its accuracy and better capability in protein structure predic-
+tion when there is no good template available.
+
+
+DL tools for compound de novo design
+De novo design is defined as a process to generate novel 
+molecules according to DTBA / DTI data or pharmacoph-
+ore data, where a pharmacophore is the minimum struc -
+tural requirements needed for showing biological activity 
+. The de novo design aims at 
+discovering novel drug-like compounds. In contrast to the 
+early software tools, which have a tendency to discover new 
+compounds of some limited chemical attraction and diver -
+sity, the modern de novo design algorithms put focus on the 
+synthesizability and drug-likeness properties of the com-
+pounds . The previous de 
+novo algorithms utilized structure-based approaches to grow 
+ligands that will be able to fit the binding site of the target of 
+interest both sterically and electronically. One of the major 
+drawbacks of these approaches is that the molecules created 
+often possess poor drug metabolism and pharmacokinetic 
+properties and are synthetically intractable . Apart from the structure-based approach, the ligand-
+based approaches were also widely used. Although these 
+methods are said to generate novel structures effectively 
+based on the transformation or reaction rules, the inherent 
+rigidness and scope of the synthesizability pose restrictions. 
+The approach usually involves the generation of a large vir-
+tual library of compounds, usually a chemical space which 
+is searched using a function that takes several parameters 
+like the drug metabolism and pharmacokinetics profiles 
+into account. These virtual libraries are created either using 
+chemical reactions along with a group of available chemical 
+building blocks or using transformational rules based on the 
+expertise of medicinal chemists .
+
+
+Now with the big data revolution, and the development 
+of DL algorithms, de novo methodologies based on deep 
+reinforcement learning (RL) have come into action which 
+helps in generating compounds with the desired physical, 
+chemical, and bioactivity properties . These deep reinforcement algorithms 
+involve the analysis of possible actions and estimation of 
+the statistical relationship between the actions and their pos-
+sible outcomes, which is followed by the determination of 
+a treatment system that attempts to find the most desirable 
+outcome. Let us look at some DL models for the de novo 
+design.
+
+
+ReLeaSE
+One of the deep RL approaches used here which enables the 
+design of chemical libraries with desired properties is rein-
+forcement learning for structural evolution (ReLeaSE). The 
+most distinct aspect of this approach is the use of SMILES 
+to represent the molecules . Figure  5 
+shows the classical representation of reinforcement learning 
+for structural evolution.
+
+
+The ReLeaSE method includes two DNN, namely the 
+generative and the predictive which are trained in two stages. 
+In stage I, the models are trained separately using different 
+algorithms, while in stage II, the models are trained together 
+using the RL approach. The generative model in this system 
+produces chemically feasible novel molecules, while the pre-
+dictive model, estimates the generative model’s conduct by 
+allocating a numerical reward or penalty to every molecule 
+that has been generated. The generative model is trained to 
+maximize the expected reward.
+
+
+Generative artificial intelligence (AI)‑based model
+This model is based on generative AI which claims that it 
+autonomously designs novel chemical compounds using the 
+knowledge of known bioactive compounds along with inher-
+ited bioactivity and synthesizability . A general overview about generative model is given 
+in Fig. 6
+This approach consists of two steps, one of which 
+includes the creation of a generic model which has learned 
+the constitution of drug like molecules from a set of large 
+unfocussed compounds. In the second step, the already exist-
+ing model is tuned on more specific molecular aspects from 
+a small target-focused library of actives. A deep recurrent 
+neural network is utilized for training the generic model 
+.
+
+
+DeepScaffold
+Drug design aims to find novel compounds which have desir-
+able pharmacological features. One of the efficient methods 
+to develop potential drug candidates is by retaining certain 
+scaffolds as the core structures.
+
+
+DeepScaffold is a scaffold-based molecular generative 
+model which conducts molecule generation based on scaf-
+fold definitions for drug discovery. Scaffold here refers to the 
+core structure of a molecule. These include Bemis–Murcko 
+scaffolds, cyclic skeletons, and scaffolds with specifications 
+on side-chain properties. DeepScaffold is capable of gener -
+alizing the learned chemical rules of the addition of atoms 
+and bonds to a given scaffold. The molecules generated by 
+this method were evaluated by molecular docking in the D2 
+dopamine receptor  targets, and the results obtained 
+can then be successfully applied to solve a large number 
+of drug design problems including the generation of com-
+pounds containing a given scaffold and de novo drug design 
+of potential drug candidates with specific docking scores. 
+An overview of how DeepScaffold performs the function is 
+shown in Fig. 7.
+
+
+AIScaffold
+Another such AI-based tool is AIScaffold (https:// iaidr  ug. 
+stone wise. cn), a web-based tool which is mainly utilized for 
+scaffold diversification with the use of a deep generative 
+model . Scaffold diversification is often used 
+by medicinal chemists for the purpose of lead compound 
+optimization, but the software tools for the same are not 
+readily available. AIScaffold is one such tool that can be 
+utilized for scaffold diversification, unlike other tools which 
+are designed to develop results by utilizing the information 
+in molecular scaffolds. An overview of AIScaffold function-
+ing is shown in Fig. 8
+This tool is capable of performing large-scale diversifica-
+tion that is up to 500,000 molecules within a matter of sev -
+eral minutes and then as a result recommend the top 500 or 
+the top 0.1% molecules. It also provides additional features 
+such as site-specific diversification. By facilitating the scaf-
+fold diversification process, AIScaffold is helping medicinal 
+chemists in accelerating drug design.
+
+
+DESMILES
+DESMILES is based on the principles of DNN model which 
+is a ML approach toward a newer drug design and works on 
+the basis of recurrent neural network (RNN) architecture 
+. DESMILES mainly aims to pro -
+duce a series of small molecules which could be chemically 
+identical to the given input of small molecule, it utilizes 
+molecular fingerprint as an input and then corresponds it 
+to a matching sequence of SMILES string with an objec-
+tive of correlating the fingerprint to the SMILES string. 
+DESMILES could be incorporated in the early phase of 
+drug design and discovery process where it could be used in 
+combination with various molecular screening technologies 
+in order to identify some newer scaffolds for possible drug 
+candidates. Extended connectivity fingerprint is another 
+form of representations that are explicitly designed to cap-
+ture various molecular features that may be relevant to the 
+molecular activity, and is thus advantageous over SMILES 
+form of representation but lacks the structural details of the 
+molecule thereby making it difficult to generate molecular 
+structures from the fingerprints.
+
+ 
+DL tools for hit identification using virtual screening
+Virtual screening is another in silico technique used in drug 
+discovery to search large libraries of small molecules to 
+identify those hits which have a higher probability to bind to 
+a drug target. The virtual screening technique uses biologi-
+cal, topological, and physicochemical properties of a chemi-
+cal compound as well as the targets. The virtual screening 
+methods can be mainly divided into two categories: (I) 
+structure-based, which uses the 3D structure of targets and 
+chemical compounds to model and visualize the interactions 
+. The 3D structure 
+can be obtained by X-ray crystallography or by Nuclear 
+magnetic resonance. Once the 3D structural information 
+is collected, docking can be applied to find the interaction 
+between a compound and a particular target. (II) Non-struc-
+ture based which can be further subdivided into two groups, 
+(a) ligand-based virtual screening  which employs the molecular properties 
+of compounds to model and analyzes the interactions with 
+targets and (b) proteo-chemometric modeling which includes 
+combining non-structural descriptors and targets at the input 
+level .
+
+
+Many studies have shown that DL algorithms show much 
+better results in comparison with other ML algorithms in the 
+case of virtual screening, especially due to their impactful 
+applications in the de novo molecular design, where mol -
+ecules with desired properties are generated by the utiliza-
+tion of sequence data . Some of the DL-based tools used in Virtual screen-
+ing and QSAR are discussed below.
+
+
+Deep VS
+DeepVS is a DL approach to improve docking-based virtual 
+screening. In DeepVS, the output from the docking program 
+is used for the extraction of relevant features from the availa-
+ble basic data from protein ligand complexes. This approach 
+uses atom and amino acid embeddings for implementing an 
+effective way of creating distributed vector representations 
+of protein–ligand complexes by modeling the compound as 
+a set of atom contexts that is further processed by a convo-
+lutional layer. It also has an added advantage of having no 
+requirement of feature engineering . The 
+workflow of Deep VS is represented in the Fig. 9.
+
+
+SIEVE score
+SIEVE score is a newly developed AI-based virtual screen-
+ing tool, also called Similarity of Interaction Energy Vec-
+tor Score . 
+This Virtual screening tool has been said to be a promising 
+method for hit identification and aims to enrich potentially 
+active compounds from a large library of chemical com-
+pounds for the purpose of biological experiments. This tool 
+is said to have a better performance in terms of efficiency as 
+compared to the state-of-the-art virtual screening methods 
+which were based on ML. The screening results obtained 
+from this tool are also human interpretable in the form of 
+important interactions which make it easy to distinguish 
+between active and inactive compounds .
+
+
+Similarity search
+Similarity searching is a method that allows fast identifica-
+tion of chemical analogs to biologically active compounds 
+. It is a deep-learning model which follows the prin-
+ciples of ligand-based drug design, where it utilizes the 
+molecular signatures as vectors to construct a connected 
+neural network. A promising technique to predict various 
+
+
+properties/parameters that are essential for hit identification 
+like the bioactivity, aqueous solubility and toxicity based 
+on the structure of the compound under investigation. Such 
+multi-task neural network models can help in predicting 
+the activity for multiple targets for the same hit much more 
+effectively as compared to the single task networks because 
+of the better representation of the data and much accurate 
+recognition of the general patterns within the data.
+
+
+Similarity search is a two-step de novo approach which is 
+based on PERL script, where specific inputs are utilized to 
+improve the efficiency of the resulting outcome. This tech-
+nique combines the DNN along with the ML approach as 
+a scoring function for the virtual screening or for predict-
+ing the affinity of the compound under investigation for the 
+selected target. By this method, one can test numerous com-
+pounds against a single target or to test a single target with a 
+single compound . The model was applied 
+to a single drug, namely piperine, and its experimental tar -
+gets. A general docking approach and molecular dynamics 
+simulation approaches were used as supplementary valida-
+tion methods to investigate the potential of the predicted 
+compounds against the prioritized targets. Both structurally 
+close and diverse analogs can be recognized using similarity 
+search based on the applied metrics . It is extremely important in the analysis of hits and 
+the schematic representation of Similarity search is shown 
+in Fig. 10.
+
+
+DL tools for pharmacokinetic property prediction
+Pharmacokinetics is the study of how a drug is being 
+absorbed, distributed, metabolized, and excreted from the 
+
+ 
+body. ADMET includes all the pharmacokinetic parameters 
+as well as the toxicity profile of the xenobiotic (ADME-
+Tox). Hence, the ADME-Tox profile of a lead compound 
+can impact its efficacy and safety. Drug efficacy and safety 
+are considered to be some of the major causes of clinical 
+failure of drugs in the process of drug discovery. There is an 
+increasing need for an efficient predictive tool of ADMET 
+properties to serve two main purposes—first, at the initial 
+stage of selection of new compounds and compound librar-
+ies, to reduce the risk of late-stage attrition, and second, to 
+optimize the screening and testing by predicting the ADMET 
+profile of the lead compound in drug discovery. In this con-
+text, ML techniques have been often used in ADME-Tox pre-
+diction. These predictions are possible due to the availability 
+of large amount of pharmacokinetic data of compounds to 
+make models with the help of ADMET in-silico modeling, 
+we can predict several properties such as dose size, dose fre-
+quency, oral absorption, bioavailability, Blood–brain-barrier 
+(BBB) . Table 2 lists 
+few examples of ADMET properties that are being modeled 
+using ML algorithms and Table  3 denotes some of the ML 
+algorithms used in ADMET predictions.
+
+
+With the development of different algorithms and 
+detailed analysis over the years, it has been found out that 
+the newly developed DL methodologies when used to predict 
+ADMET, produce efficient results in comparison to the other 
+mentioned model. Researchers all over the world have not 
+only developed specific tools that work on dl techniques for 
+predicting one property at a time but also have been able to 
+make complete in silico ADMET platforms. Some of these 
+tools and platforms have been mentioned below.
+
+
+Tox_(R)CNN
+The cytotoxic changes induced by drugs cause cellular and 
+nuclear morphological changes which are characteristic 
+of the specific cell-death pathway involved . These changes are usually being identified based 
+on the visualization of nuclei using different microscopic 
+approaches for years. Tox_(R)CNN is a modern-day tool that 
+has been designed to detect cytotoxicity from microscopic 
+images of fluorescently stained nuclei, without using specific 
+toxicity labeling. The tool Tox_(R)CNN has been operated 
+using DL technologies, as DL is the most powerful super -
+vised ML methodology available and has the exceptional 
+abilities to solve computer vision tasks . This tool uses two convolutional neural net-
+works (CNN):
+1. Tox_CNN—classifies cells based on prior cell segmen-
+tation and cropping of nuclei images.
+2. Tox_RCNN—carries out fully automated cell identifica-
+tion and classification.
+These networks provide classification outputs that give 
+sensitive screening readouts that detect pre-lethal toxicity 
+and hence make the tool extremely useful and affordable 
+and even applicable to other in vitro toxicity readouts. The 
+model constitutes a robust screening tool for drug discovery.
+
+
+Metabolite prediction
+Studies show that more than about 25% of the compounds 
+are withdrawn from the market or trials due to metabolic, 
+pharmacokinetic, or toxic problems and hence causes a lot 
+of financial loss to the company. The experimental methods 
+developed to identify and study the metabolic processes 
+in drugs are extremely demanding in terms of equipment, 
+expertise, cost, and time and hence researchers are trying 
+to find computational alternatives for the same. The two 
+main research directions which provide necessary support 
+and guidance are metabolic sites (SOMs) and metabolite 
+structure that show extensive help in computer-aided meta-
+bolic prediction methods. The model mentioned here per -
+forms the function of metabolites prediction in the following 
+steps: it first establishes the database with broad coverage of 
+SMARTS-coded metabolic reaction rules. Then, to construct 
+a DL algorithm-based classification model, the molecular 
+fingerprints of compounds are extracted. The model can 
+identify the reaction types that have a higher probability to 
+occur in comparison to others. According to the researchers, 
+this method is capable of generating higher accuracies than 
+random guess and the rule-based methods used for metabo-
+lite prediction .
+
+
+Oral bioavailability prediction
+Oral bioavailability plays an important role in determining 
+the absorption of a drug in the body. If we are capable of 
+predicting bioavailability, which is difficult to do as it is 
+dependent on highly complex factors and processes, then 
+it would be extremely easy to prioritize drug candidates in 
+the process of drug discovery. This model uses DL and six 
+experimentally determined in vitro and physicochemical 
+endpoints including membrane permeation, free fraction, 
+metabolic stability, solubility, pK a value, and lipophilicity 
+to determine the oral bioavailability in rats. The chemical 
+structure of the drugs is encoded as fingerprints or SMILES. 
+Modeling the available information along with the structural 
+information of the chemical compounds, the model achieves 
+an accuracy of 70%. It might seem that ADMET predicting 
+models or tools should be able to predict direct distribu-
+tion, absorptions, etc. of drugs directly, but the fact that sev-
+eral parameters govern such pharmacokinetic property and 
+prediction of one such parameter is itself highly significant 
+and serves as an ADMET tool.
+
+
+OpenChem
+Openchem is a DL toolkit with Pytorch backend which is 
+freely available via the GitHub repository. It aims at making 
+easy-to-use DL models, for computational chemistry and 
+drug design research . This toolkit 
+is very helpful in keeping track of the training set, as well 
+as in visualizing the evaluations, and project embedding in 
+lower dimensional space. The toolkit helps in data preproc-
+essing and has a very fast training process due to the support 
+of multi-GPU. It is user-friendly as new models are built 
+with only configuration files. The above toolkit helps us in 
+the classification of data, regression analysis of data, and 
+helps in generating various models which help in predicting 
+the ADME properties of a lead compound. The workflow 
+diagram of OpenChem is shown in Fig. 11.
+
+
+Over the past 2 decades, many in silico fragment-based 
+drug discovery (FBDD) platform has been developed with 
+a goal to generate a variety of models to study the phar -
+macokinetics and physicochemical for drug discovery and 
+development at its early stage. The main principle for the 
+fragment-based drug discovery includes a screening of low 
+molecular weight compounds against macromolecular tar -
+gets such as proteins. The screening technology includes dif-
+ferential scanning fluorimetry, surface plasmon resonance, 
+and thermophoresis, followed by structural characterization 
+using nuclear magnetic resonance (NMR) or X-ray crystal-
+lography of the individually soaked fragments of the lead 
+compounds.
+
+
+Tools for drug activity prediction
+DL tools are able to identify chemical features in drug mol-
+ecules and predict the activity of known molecules includ-
+ing their biological activity. One such DL-based tool is dis-
+cussed below.
+
+
+ 
+MultiCon
+To diminish the workload of a large amount of supervised 
+data and improve the model efficacy, semi-supervised learn-
+ing algorithms can be used. By predicting the therapeutic 
+application of drugs from their structural formulas using the 
+semi-supervised learning algorithm, the cost, as well as the 
+time consumed, will reduce significantly. Using the Multi-
+Con toolkit , 1 can classify a drug into 
+12 categories, depending on their therapeutic applications 
+and image analysis of their structural formulas. Studies show 
+that MultiCon has a higher rate of class prediction compared 
+to other pre-existing semi-supervised learning algorithms, 
+because of its rational usage of data balancing, the limited 
+number of labeled data, online argumentations of drug 
+image input during training, along with the combined usage 
+of multi contrastive loss with consistent regularization. The 
+working principle of MultiCon is overviewed in Fig. 12.
+
+
+Application of DL in clinical trial design
+The clinical study is the next step of the drug development 
+process, which constitute a multi-billion-dollar industry, 
+aiming for a successful evaluation of drug effectiveness by 
+testing the lead molecules on human subjects . A clinical researcher’s first and foremost objective is 
+to figure out that whether the new treatment, like a new drug 
+or dosage form or medical device (like a pacemaker) is safe 
+and effective for humans to use. Usually, it is designed in a 
+way to understand if the newer treatment under investigation 
+is more efficacious and has less harmful side effects than the 
+conventional treatment available and also design the dosage 
+in such a manner based on these results to attain optimum 
+therapeutic effect where the minimal amount of the drug 
+is needed to elicit a therapeutic response .
+
+
+On an average, it takes 10–15 years with a cost of 1.5–2.0 
+billion USD for new drug molecule to reach the market. 
+Studies have shown that approximately half of the time, 
+human resource and expenditure during the drug discovery 
+process is spend in the clinical trial phases. The remain-
+ing 50% of the time and money covers the preclinical lead 
+compound identification, optimization as well as regulatory 
+processes . Records have shown that 
+one of the main obstacles in the drug development cycle 
+is the high failure rate of clinical trials. The factors lead-
+ing to the high failure rates of the clinical trials are patient 
+cohort selection and recruitment of mechanisms that fail to 
+provide the best suited patients to a trial in time, as well as 
+lack of technical infrastructure to cope with the complexity 
+in the later phases of clinical trials, such as the absence of 
+a reliable and efficient adherence control, patient monitor -
+ing, and clinical endpoint detection systems. Past research 
+has witnessed the high potential of AI and other advanced 
+analytics tools to automate clinical trial processes, which 
+makes it a cost-effective approach . Some of 
+the currently available AI-based tools used in clinical trial 
+setup is discusses below.
+
+
+TRIALS.AI
+Trials.ai is an AI-based startup which helps in design of 
+clinical trial protocols. It makes use of Natural language 
+processing and other AI techniques. The software collects 
+and analyze data from different source like journals, drug 
+labels, private data from hospitals with which the company 
+have connections. These data are used to study proposed 
+trials, strictness of eligibility criteria, and how it affects the 
+clinical trials outcome like cost, participation retention etc. 
+.
+
+
+AICURE
+Success of well-designed protocols depends on whether the 
+participants follow the instructions or not. A small mistake, 
+like forgetting to take a pill can negatively impact the study 
+results. AICURE is an AI-based platform which helps clini-
+cal trials participants use their smartphone to record videos 
+of them having medication. Using computer vision algo-
+rithms, AICURE software can predict the person have taken 
+the medication or not. This tool can also analyze the facial 
+expression of person to track how they respond to treatment 
+which can help in development of therapies .
+
+
+Success stories of the use of DL in drug discovery 
+and development
+With the development of DL methodologies, we have seen 
+major pharmaceutical companies shifting toward AI, leaving 
+behind the old traditional methods, to maximize patient’s 
+profit along with their own. Astrazeneca is a global, science-
+led multinational pharmaceutical company that have reached 
+the heights of success by integrating AI in every step of drug 
+discovery going from virtual screening to clinical trials. The 
+way they incorporated AI to redefine medical science has 
+allowed them to gain a better understanding of existing dis-
+eases, identify new targets, design better clinical trials and 
+in general speed up the complete process. Astra Zeneca’s 
+growth is itself a successful example of how integrating AI 
+with medical science can help achieve wonders. Their con-
+stant efforts on increasing AI use can be easily seen by the 
+collaborations they are doing with other AI-based compa-
+nies. One such example is their collaboration with Alibaba 
+subsidiary Ali Health which aims to develop AI-assisted 
+screening and diagnostics platforms in China.
+
+
+The outbreak of the SARS-CoV-2 virus has brought a 
+large number of companies under the pressure to find out 
+the best drug in the shortest time possible. To achieve these 
+companies have resorted to using AI along with the informa-
+tion available. Some examples of such success stories of the 
+companies who have been able to identify potential leads 
+against the COVID-19 virus have been mentioned below.
+
+
+MT-DTI (Molecule Transformer Drug Target Interac-
+tion Model), a deep-learning based drug-protein interaction 
+prediction model, by Deargen, a South Korea-based com-
+pany. This model is used to predict the interaction strength 
+between a drug and its target protein using simplified chemi-
+cal sequences instead of 2D or 3D molecular structures. The 
+model was used on the available FDA-approved antiviral 
+drugs, and it found out that Atazanavir, an HIV medication, 
+is highly probable to bind and block a prominent protein on 
+the COVID-19 causing virus SARS-CoV-2. Along with this, 
+it also identified other three antivirals and a not yet approved 
+drug Remdesivir which is now being tested in patients. Dea-
+gen being able to identify antivirals using DL techniques is a 
+great step on advancing pharmaceutical research and making 
+the process less tedious and more efficient. If such drugs 
+are properly tested, there is a great probability, we would be 
+able to overcome this pandemic in the shortest time possible 
+.
+
+
+Another example is that of the Benevolent AI, a London 
+based Biotechnology Company that uses biomedical data, 
+AI and ML to accelerate research in the health sector. So 
+far, they have been able to identify six drugs and one of 
+them Ruxolitinib is said to be under clinical trial for COVID-
+19 . The company has been using a large 
+repository of medical data, along with information extracted 
+from the scientific literature by ML, and their AI system 
+to identify potential drugs that might block the viral rep-
+lication process of SARS-CoV-2. They got the Food and 
+Drug Administration (FDA) approval for the use of their 
+proposed Baricitinib drug in combination with Remdesivir 
+where recovery rate increased for the hospitalized COVID-
+19 patients .
+
+
+One of the most common types of cancers across the 
+world is skin cancer. As its incidence is continuously 
+increasing and it is becoming extremely important to detect 
+skin cancer in its early stages as studies show early detec -
+tion and treatment is the key to increase the survival rate of 
+skin cancer patients. With increasing growth in both medi-
+cal science and AI, a no. of Skin cancer smartphone apps 
+has been launched into the market which provides people 
+with a technological approach who have suspicious lesions 
+to decide whether they should seek medical help. Studies 
+show that about 235 dermatology smartphone apps were 
+developed between the years 2014 and 2017 . Earlier, they operated by sending the photo of the 
+lesion to a health professional, but now with inbuilt AI algo-
+rithms in smartphones, these apps are successfully capable 
+of detecting and classifying images of lesions into high or 
+low risk along with immediate risk assessment and subse-
+quent recommendations to the patient. One such successful 
+app is SkinVison .
+
+
+Conclusion
+ML has been adapted in the field of drug discovery and 
+development since 1990s with a long and fruitful history 
+of DL, the current extension of ML was established based 
+on the concept of multi-layer neural networks, and some of 
+these techniques have been engrossed only recently in the 
+pharmaceutical research arena, accelerating the drug dis-
+covery process. Unmistakably, application of DL needs a 
+cautious analysis and a rigorous explanation of their respec-
+tive realm of application that it may provide for the chemists 
+in their quest for new drug discovery. Overall, it is a well-
+appreciated method in the field of modern drug discovery 
+and development and with the recent advancements in the 
+DL tool box, it can yield far reaching results. Taking into 
+consideration of the recent success of such methodologies 
+and its utilization by the pharmaceutical companies to boost 
+its search for new drugs, it is convincing that the modern 
+DL methodologies will be highly appreciated in the com-
+ing era of big data search and analysis for drug design and 
+discovery.
+
+ 
+Drug discovery and development has always been 
+a challenging process which involves a lot of time and 
+investment to move a drug candidate into the clinical tri-
+als. AI has been proven to demonstrate a substantial pro-
+gress in boosting the success rate of the process, thereby 
+reducing the overall costs of the research . Several compa-
+nies have been investing time and money to develop their 
+proprietary algorithms such as to tackle the challenges of 
+the modern drug discovery and development process. The 
+major key to the development of these algorithms is to 
+bring together a group of experts from different domains 
+such as data science engineers, chemists, and biologists 
+under the one ecosystem of in silico drug design .
+
+
+Lack of valid information regarding biological systems 
+have made it difficult to label proper descriptors and end-
+points, such that AI or DL tools cannot be applied in an 
+effective manner to expect a reproducible outcome. Hence, 
+the inability to properly model the biological system is 
+one of the main limitations of AI in drug design . Another important limitation of AI in drug dis-
+covery is the selection of appropriate data sets and over 
+focus on speed and cost-effectiveness in drug discovery. 
+The enormous amount of available proxy chemical data 
+set and advanced computational techniques, combinato-
+rial chemistry, etc., have made it possible to synthesize 
+more and more molecules in very limited time and that 
+too in a cost-effective manner, but despite the efforts to 
+synthesizing more molecules, the actual number of drugs 
+making into the market via clinical trials is still very less 
+considering the efforts done. This is mainly because all 
+the available data and endpoints are generated and used in 
+ligand design and discovery focusing toward the activity 
+against the targeted disease thus the ligand might have 
+good pharmacodynamics properties but fails to attain opti-
+mal pharmacokinetic properties thus the primary focus 
+must be on designing a ligand that displays optimum phar -
+macokinetic and pharmacodynamics properties to become 
+a good clinical candidate. Rather than focusing on creat-
+ing more ligands, we have to come up with novel data, 
+and meaningful endpoints which help us to utilize the full 
+potential of AI and ML techniques to predict and bring 
+potential drug candidates to the clinic which have good 
+pharmacokinetic properties, safety, and efficacy .
+
+
+It is a great opportunity to make use of AI and DL in 
+the field of drug discovery to develop methods and tech-
+niques for proper modeling of biological systems, by gen-
+erating well-validated data having well-defined labels and 
+endpoints, providing information regarding the targets and 
+their interactions with ligands.
+
